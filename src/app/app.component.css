@@ -1,0 +1,86 @@
+@charset "utf-8";
+
+.dentaku {
+    width: 400px;
+    height: 500px;
+    background-color: antiquewhite;
+    border: 5px solid #000;
+    border-radius: 30px;
+    text-align: center;
+    padding: 8px;
+    margin: 20px;
+}
+
+.button {
+    width: 90px;
+    height: 90px;
+    font-size: x-large;
+    background-color: #dcdcdca4;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+}
+
+.button1 {
+    width: 180px;
+    height: 90px;
+    font-size: x-large;
+    background-color: #dcdcdca4;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+}
+
+.button2 {
+    width: 180px;
+    height: 90px;
+    font-size: x-large;
+    background-color: #dcdcdca4;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+}
+
+#result {
+    max-width: 350px;
+    height: 90px;
+    text-align: right;
+    background: white;
+    border: 1px solid black;
+    font-size: 50px;
+    border-radius: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.symbol {
+    background-color: burlywood;
+}
+
+.operator {
+    background-color: #87cefa;
+}
+
+.button:hover {
+    background-color: #808080;
+}
+
+.button:active {
+    background-color: #808080;
+}
+
+.button1:hover {
+    background-color: #808080;
+}
+
+.button1:active {
+    background-color: #808080;
+}
+
+.button2:hover {
+    background-color: #808080;
+}
+
+.button2:active {
+    background-color: #808080;
+}
