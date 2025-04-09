@@ -1,4 +1,4 @@
-import { Component, ElementRef, viewChild } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,15 +8,15 @@ import { Component, ElementRef, viewChild } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'newcalc0408';
+  title = 'calculator[10097]';
 
-  input:string = ''; //入力された値（文字列）
-  formula :string = ''; //inputとoperatorの文字列
-  result :string = '0'; // 初期値０
-  total :string = ''; //イコール入力後の合計値を保持
-  mode : string = 'integer_mode';  //　integer：小数点入力可能　decimal：小数点入力不可
-  equal_flag : string = 'off'; // イコール後の状態を管理　off：何でも入力可　on：＝入力後
-  plusmin_flag :string = 'off'; // +/-後の状態を管理　off:すべて入力可　on：[. 0-9]は入力不可
+  input: string = ''; //入力された値（文字列）
+  formula: string = ''; //inputとoperatorの文字列
+  result: string = '0'; // 初期値０
+  total: string = ''; //イコール入力後の合計値を保持
+  mode: string = 'integer_mode';  //　integer：小数点入力可能　decimal：小数点入力不可
+  equal_flag: string = 'off'; // イコール後の状態を管理　off：何でも入力可　on：＝入力後
+  plusmin_flag: string = 'off'; // +/-後の状態を管理　off:すべて入力可　on：[. 0-9]は入力不可
   
   value_btn(target:string){
     if(this.plusmin_flag == 'off'){
@@ -40,19 +40,17 @@ export class AppComponent {
     this.input = this.tenDigit(this.input);
     this.result = this.formula + this.input;
     this.result = String(this.maxLength(this.result));
-    this.fontSize()
+    this.fontSize(this.result);
     return this.result;
-  }
+  };
 
   zero(target:string){
     let target_value = target;
-
     if(this.plusmin_flag == 'off'){
       if(this.equal_flag == 'off'){
        let preValue = this.result.slice(-1);
        if(preValue=='+'||preValue=='-'||preValue=='×'||preValue=='÷'||null){
-         target_value = '0.';
-         this.input += target_value; 
+         this.input += '0.'; 
          this.mode = 'decimal_mode';
        }else if(this.result == '0'){
          this.input = target_value;
@@ -65,16 +63,15 @@ export class AppComponent {
         this.equal_flag = 'off';
       };
     }else if(this.plusmin_flag == 'on'){
-      return;
+     return;
     };
     this.input = this.eigthDigit(this.input);
     this.input = this.tenDigit(this.input);
     this.result = this.formula + this.input;
     this.result = String(this.maxLength(this.result));
-    this.fontSize()
-
+    this.fontSize(this.result);
     return this.result;
-  }
+  };
 
   point(){
     if(this.plusmin_flag == 'off'){
@@ -82,7 +79,7 @@ export class AppComponent {
         let preValue = this.result.slice(-1);
         if(this.mode == 'integer_mode'){
           if(this.result =='0'||preValue=='+'||preValue=='-'||preValue=='×'||preValue=='÷'){
-            this.input = '0.'; // += ??
+            this.input = '0.';
           }else{
             this.input += '.';
           };
@@ -100,8 +97,7 @@ export class AppComponent {
     };  
     this.result = this.formula + this.input;
     this.result = String(this.maxLength(this.result));
-    this.fontSize()
-
+    this.fontSize(this.result)
     return this.result;
   };
 
@@ -109,7 +105,6 @@ export class AppComponent {
     let target_value = target;
     this.mode = 'integer_mode';
     this.plusmin_flag = 'off';
-
     if(this.equal_flag == 'off'){
       let preValue = this.result.slice(-1);
       if(this.result =='0'||preValue=='+'||preValue=='-'||preValue=='×'||preValue=='÷'||preValue=='.'){
@@ -125,9 +120,9 @@ export class AppComponent {
     };
     this.result = this.formula;
     this.result = String(this.maxLength(this.result));
-    this.fontSize()
+    this.fontSize(this.result);
     return this.result;
-  }
+  };
 
   equal_btn(){
     if(this.equal_flag == 'off'){
@@ -140,7 +135,6 @@ export class AppComponent {
           this.result = this.result.replace(/÷/g,'/');
       };
       this.result = eval(this.result);
-      this.total = this.result; 
       this.mode = 'integer_mode'
       this.input = '';
       this.formula = '';
@@ -151,6 +145,8 @@ export class AppComponent {
     this.plusmin_flag = 'off';
     this.maxNum(this.result);
     this.result = String(this.digiNum(this.result));
+    this.total = this.result; 
+    this.fontSize(this.result);
     return this.result;
   };
 
@@ -162,6 +158,7 @@ export class AppComponent {
     this.mode = 'integer_mode'
     this.equal_flag = 'off';
     this.plusmin_flag = 'off';
+    this.fontSize(this.result);
   }
 
   inverted(){
@@ -189,19 +186,19 @@ export class AppComponent {
       }else{
         this.input = '(-' + this.input + ')';
       };
-      this.result = this.input;
       this.plusmin_flag = 'on'
     };
     this.equal_flag = 'off';
     this.result = this.formula + this.input;
     this.result = String(this.maxLength(this.result));
+    this.fontSize(this.result);
     return this.result;
   };
 
   maxNum(num:string){
     if (Number(num) > 9999999999 || Number(num) < -9999999999) {
       this.allClear();
-    }
+    };
   };
 
   digiNum(num:string){
@@ -211,8 +208,8 @@ export class AppComponent {
   maxLength(num:string){
     let maxLength = 27;    //(-10桁)÷(-10桁)の27桁の計算に対応
     if(num.length > maxLength){
-    num = num.slice(0,maxLength);
-    }
+      num = num.slice(0,maxLength);
+    };
     return num;
   };
 
@@ -236,20 +233,22 @@ export class AppComponent {
     }
   }
 
-  fontSize(){
+  fontSize(num:string){
     let font = document.getElementById("result")!;
-    let numlength = font.innerHTML.length;
-    if(numlength <9){
+    let numlength = num.length;
+    if(numlength < 10){
       font.style.fontSize = '50px'
-    }else if(numlength < 11){
+    }else if(numlength < 12){
       font.style.fontSize = '40px';
-    }else if(numlength < 14){
+    }else if(numlength < 16){
       font.style.fontSize = '30px';
-    }else if(numlength < 18){
+    }else if(numlength < 19){
       font.style.fontSize = '25px';
-    }else{
+    }else if(numlength < 24){
       font.style.fontSize = '20px';
-    }
+    }else if(numlength < 26){
+      font.style.fontSize = '15px';
+    };
   };
-}
+};
 
