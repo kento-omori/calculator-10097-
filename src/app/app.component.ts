@@ -195,13 +195,14 @@ export class AppComponent {
       if(this.percent_flg == 'off'){
         this.formula = this.input + this.operator;
         this.eq_flg = 'off';
-      }else if(this.percent_flg == 'on'){             // + -の場合のみ、％後の処理を行う
+      }else if(this.percent_flg == 'on'){             // + -の場合のみ、×％後の処理を行う
         if(this.operator == '×'||this.operator == '÷'){
           this.formula = this.input + this.operator;
           this.eq_flg = 'off';
         }else if(this.operator == '+'||this.operator == '-'){
           let lastInput = this.input;
           this.input = this.putPercentPreValue + this.operator + this.input;
+          this.input = this.conversion(this.input);
           this.input = eval(this.input);
           this.input = this.resultLimit(this.input); 
           this.input = this.decimal_seven2eight(this.input);
@@ -387,6 +388,7 @@ export class AppComponent {
           if(lastWord == '+' || lastWord == '-'){
             this.input = this.formula + this.putPercentPreValue + '*' + lastInput + '/' + '100';
             this.formula = this.formula + this.putPercentPreValue + '×' + lastInput + '÷' + '100' + '=';
+            this.input = this.conversion(this.input);
             this.input = eval(this.input);
             this.input = this.resultLimit(this.input);
             this.input = this.decimal_seven2eight(this.input);  
@@ -406,7 +408,7 @@ export class AppComponent {
             this.input = eval(this.input);
             this.input = this.resultLimit(this.input);
             this.input = this.decimal_seven2eight(this.input);  
-            this.percent_flg = 'on';
+            this.percent_flg = 'off';
           };
           this.input = this.maxLength(this.input);
           this.errorOut();
@@ -563,7 +565,7 @@ export class AppComponent {
     let digit = Math.pow(10,8);
     num = String((Math.round(Number(num)*digit)/digit));
 
-    if(num.includes('e')){
+    if(num.includes('e')||num.includes('E')){
       num = parseFloat(num).toFixed(8);
     }else{
       num;
@@ -582,7 +584,7 @@ export class AppComponent {
     if(Number(num) > 0){
       if(Number(num) <= 0.00000009){
         num = String(parseFloat(num).toFixed(8));
-      }else if(Number(num) <= 0.0000009){
+      }else if(Number(num) <= 0.00000099){
         num = this.decimal_seven(num);
       }else{
         num = String(parseFloat(num));
@@ -590,7 +592,7 @@ export class AppComponent {
     }else if(Number(num) < 0){
       if(Number(num) >= -0.00000009){
         num = parseFloat(num).toFixed(8);
-      }else if(Number(num) >= -0.0000009){
+      }else if(Number(num) >= -0.00000099){
         num = this.decimal_seven(num);
       }else{
         num = String(parseFloat(num));
