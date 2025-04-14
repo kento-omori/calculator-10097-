@@ -1,0 +1,111 @@
+<form name = "calculator"></form>
+ <table class = "dentaku">
+    <tr>
+        <td input type="text" colspan="4" id = "memoryState" >{{memoryState}}</td>
+    </tr>
+    <tr>
+        <td input type="text" colspan="4" id = "formula" >{{formula}}</td>
+    </tr>
+    <tr>
+        <td input type="text" colspan="4" id = "input" >{{input}}</td>
+    </tr>
+    <tr>
+      <td>
+          <button  class = "button memory" (click)="memory('MC')" >MC</button>
+      </td>
+      <td>
+          <button  class = "button memory" (click)="memory('MR')" >MR</button>
+      </td>
+      <td >
+          <button class = "button memory" (click)="memory('M+')">M+</button>
+      </td>
+      <td >
+          <button class = "button memory" (click)="memory('M-')">M-</button>
+      </td>
+    </tr>
+    <tr>
+        <td>
+          <button  class = "button symbol" (click)="allClear()" >AC</button>
+        </td>
+        <td >
+          <button class = "button symbol" (click)="clear()">C</button>
+        </td>
+        <td>
+            <button  class = "button symbol" (click)="bs()" >▶</button>
+        </td>
+        <td>
+            <button  class = "button symbol" (click)="percent()" >%</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+          <button class = "button symbol" (click)="squared()">X²</button>
+        </td>
+        <td>
+            <button class = "button symbol" (click)="route()">√X</button>
+        </td>
+        <td >
+            <button class = "button symbol" (click)="inverted()">+/-</button>
+        </td>
+        <td >
+            <button class = "button operator" (click)="operator_btn('÷')">÷</button>
+        </td>
+      </tr>
+    <tr>
+        <td >
+            <button class = "button" (click)="value_btn('7')">7</button>
+        </td>
+        <td >
+            <button class = "button" (click)="value_btn('8')">8</button>
+        </td>
+        <td >
+            <button class = "button" (click)="value_btn('9')">9</button>
+        </td>
+        <td >
+            <button class = "button operator" (click)="operator_btn('×')">×</button>
+        </td>
+    </tr>
+    <tr>
+        <td >
+            <button class = "button" (click)="value_btn('4')">4</button>
+        </td>
+        <td >
+            <button class = "button" (click)="value_btn('5')">5</button>
+        </td>
+        <td >
+            <button class = "button" (click)="value_btn('6')">6</button>
+        </td>
+        <td >
+            <button class = "button operator" (click)="operator_btn('-')">-</button>
+        </td>
+    </tr>
+    <tr>
+        <td >
+            <button class = "button" (click)="value_btn('1')">1</button>
+        </td>
+        <td >
+            <button class = "button" (click)="value_btn('2')">2</button>
+        </td>
+        <td >
+            <button class = "button" (click)="value_btn('3')">3</button>
+        </td>
+        <td >
+            <button class = "button operator" (click)="operator_btn('+')">+</button>
+        </td>
+     </tr>
+     <tr>
+        <td >
+            <button class = "button" (click)="zeroZero('00')">00</button>
+        </td>
+        <td >
+            <button class = "button" (click)="zero('0')">0</button>
+        </td>
+        <td >
+            <button class = "button" (click)="point()">.</button>
+        </td>
+        <td>
+            <button class = "button operator" (click)="equal_btn()">=</button>
+        </td>
+     </tr>
+ </table>
+
