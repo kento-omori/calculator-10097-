@@ -186,8 +186,8 @@ export class AppComponent {
             this.input = this.resultLimit(this.input);  // 文字数が10億位を超えていないか、小数点以下が8桁を超えていないか確認
             this.input = this.decimal_seven2eight(this.input); // 指数表記を元に戻す
             this.formula = this.input + this.operator;
-            this.mode = 'integer_mode';
           };
+        this.mode = 'integer_mode';
         };
       };
     }else if(this.eq_flg == 'on'){
@@ -209,10 +209,10 @@ export class AppComponent {
           this.formula = this.putPercentPreValue + this.operator + lastInput + '=';
           this.operator = '';
         };
-        this.percent_flg = 'off';
+      this.percent_flg = 'off';
+      this.mode = 'integer_mode';
       };
     };
-    this.mode = 'integer_mode';
     this.input = this.maxLength(this.input);
     this.errorOut();
   };
