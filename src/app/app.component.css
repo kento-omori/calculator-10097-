@@ -21,13 +21,43 @@
     outline: none;
 }
 
+.button2 {
+    width: 230px;
+    height: 90px;
+    font-size: x-large;
+    background-color: #dcdcdca4;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+}
+
+.button3 {
+    width: 110px;
+    height:185px;
+    font-size: x-large;
+    background-color: #dcdcdca4;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+}
+
+.button4 {
+    width: 110px;
+    height: 70px;
+    font-size: x-large;
+    background-color: #dcdcdca4;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+}
+
 #input {
     max-width: 450px;
     height: 70px;
     text-align: right;
     background: white;
     border: none;
-    font-size: 50px;
+    font-size: 38px;
     border-radius: 5px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -39,7 +69,7 @@
     text-align: right;
     background: white;
     border: none;
-    font-size: 25px;
+    font-size: 18px;
     border-radius: 5px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -80,5 +110,21 @@
 }
 
 .button2:active {
+    background-color: #808080;
+}
+
+.button3:hover {
+    background-color: #808080;
+}
+
+.button3:active {
+    background-color: #808080;
+}
+
+.button4:hover {
+    background-color: #808080;
+}
+
+.button4:active {
     background-color: #808080;
 }
